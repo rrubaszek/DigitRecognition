@@ -1,7 +1,7 @@
 """
 Models for handwritten digit recognition.
 """
-from .ConvulsionalModel import *
+from .ConvolutionalModel import *
 from .RandomForestModel import *
 
 __all__ = ['ConvolutionalModel', 'RandomForestModel', 'loadData', 'train', 'evaluate', 'saveModel', 'predict']

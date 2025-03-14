@@ -10,9 +10,9 @@ Users can load models with the `.keras` extension, draw numbers, and get real-ti
 
 ## Features
 
-✅ Load trained **CNN** or **Random Forest** models (`.keras` format) 
-✅ Draw digits on an interactive canvas  
-✅ Recognize handwritten digits with high accuracy  
+✅ Load trained **CNN** or **Random Forest** models (`.keras` format)
+✅ Draw digits on an interactive canvas 
+✅ Recognize handwritten digits with high accuracy
 ✅ Supports **MNIST dataset-trained models**  
 ✅ Simple **GUI using Tkinter**  
 ✅ Available code for both models that can be modified and studied 
@@ -81,7 +81,7 @@ If you want to **train your own models**, run:
 
 ### **Train the CNN Model**
 ```bash
-python models/ConvulsionalModel.py
+python models/ConvolutionalModel.py
 ```
 This will save the model in keras_models folder. Also, feel free to experiment with the parameters in the code.
 
