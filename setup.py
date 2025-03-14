@@ -1,14 +1,9 @@
 from setuptools import setup, find_packages
 
-def read_requirements():
-    with open("requirements.txt", "r") as file:
-        return [line.strip() for line in file if line.strip() and not line.startswith("#")]
-
 setup(
-    name="digit_recognition_model",
+    name="DigitRecognition",
     version="0.1.0",
     packages=find_packages(),
-    install_requires=read_requirements(),
     author="Robert Rubaszek",
     author_email="robert.rubaszek@gmail.com",
     description="An application for handwritten digits recognition",
