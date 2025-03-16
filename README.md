@@ -4,13 +4,13 @@ This project provides a **handwritten digits recognition application** that allo
 1. **Convolutional Neural Network (CNN)**
 2. **Random Forest Classifier**
 
-Users can load models with the `.keras` extension, draw numbers, and get real-time predictions.
+Users can load models with the `.keras` and `.joblib` extension, draw numbers, and get real-time predictions.
 
 ---
 
 ## Features
 
-✅ Load trained **CNN** or **Random Forest** models (`.keras` format)
+✅ Load trained **CNN** or **Random Forest** models (`.keras` and `.joblib` format)
 ✅ Draw digits on an interactive canvas 
 ✅ Recognize handwritten digits with high accuracy
 ✅ Supports **MNIST dataset-trained models**  
@@ -36,21 +36,21 @@ Users can load models with the `.keras` extension, draw numbers, and get real-ti
 
 ---
 
-## 🛠️ Installation
+## Installation
 
-### 1️⃣ **Clone the Repository**
+### **1. Clone the Repository**
 ```bash
 git clone https://github.com/rrubaszek/DigitRecognition.git
 cd DigitRecognition
 ```
 
-### 2️⃣ **Create a Virtual Environment (Optional)**
+### **2. Create a Virtual Environment (Optional)**
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
-### 3️⃣ **Install Dependencies**
+### **3. Install Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
@@ -75,7 +75,7 @@ python src/Application.py
 
 ---
 
-## 🧠 Training the Models
+## Training the Models
 
 If you want to **train your own models**, run:
 
@@ -94,7 +94,7 @@ This will save the model in keras_models folder. Also, feel free to experiment w
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Python 3.8+**
 - **TensorFlow / Keras** (for CNN model)

@@ -2,13 +2,16 @@ import tensorflow as tf
 import tkinter as tk
 import numpy as np
 import os
-import sys
+# import sys
+import joblib
 from tkinter import filedialog, messagebox, Frame, Label, Canvas, Button
 from PIL import Image, ImageDraw
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class DigitRecognitionApp:
+    modelType = ""
+
     def __init__(self, root):
         self.selectModelFile()
 
@@ -78,13 +81,25 @@ class DigitRecognitionApp:
         img = self.image.resize((28, 28)).convert("L")
         img = np.array(img) 
         img = 255 - img  # Invert the image colors (white background, black digit)
-        img = img.reshape(1, 28, 28, 1)
-        img = img / 255  # Normalize pixel values to [0, 1]
         
-        predictions = self.model.predict(img)
-        predictionText = "\n".join([f"Digit {i}: {predictions[0][i]:.4f}" for i in range(10)])
-        predictedLabel = np.argmax(predictions)
-        messagebox.showinfo("Prediction", f"Prediction Probabilities:\n{predictionText}\n\nPredicted Digit: {predictedLabel}")
+        if self.modelType == "keras":
+            img = img.reshape(1, 28, 28, 1)
+            img = img / 255  # Normalize pixel values to [0, 1]
+            
+            predictions = self.model.predict(img)
+            predictionText = "\n".join([f"Digit {i}: {predictions[0][i]:.4f}" for i in range(10)])
+            predictedLabel = np.argmax(predictions)
+            messagebox.showinfo(
+                "Prediction", f"Prediction Probabilities:\n{predictionText}\n\nPredicted Digit: {predictedLabel}"
+                )
+        elif self.modelType == "joblib":
+            img = img.reshape(1, -1)
+            img = img / 255 # Normalize pixel values to [0, 1]
+    
+            predicted_class = self.model.predict(img)[0]
+            # Show result in message box
+            messagebox.showinfo("Prediction", f"Predicted Digit: {predicted_class}")
+
 
     def clearCanvas(self):
         self.canvas.delete("all")
@@ -96,15 +111,27 @@ class DigitRecognitionApp:
 
     def loadModel(self, modelPath):
         try:
-            model = tf.keras.models.load_model(modelPath)
-            print(f"Model loaded successfully from {modelPath}")
+            # Check file extension
+            ext = os.path.splitext(modelPath)[1].lower()
+
+            if ext == ".keras":
+                model = tf.keras.models.load_model(modelPath)
+                self.modelType = "keras"
+                print(f"Model loaded successfully from {modelPath} (Keras)")
+            elif ext == ".joblib":
+                model = joblib.load(modelPath)
+                self.modelType = "joblib"
+                print(f"Model loaded successfully from {modelPath} (Joblib)")
+            else:
+                raise ValueError("Unsupported file format. Please select a .keras or .joblib file.")
+            
             return model
         except Exception as e:
             print(f"Error loading model: {e}")
-            return None        
+            return None      
 
     def selectModelFile(self):
-        modelPath = filedialog.askopenfilename(title="Select Model File", filetypes=[("Keras Model Files", "*.keras")])
+        modelPath = filedialog.askopenfilename(title="Select Model File", filetypes=[("Keras/Joblib Model Files", "*.keras;*.joblib")])
         if modelPath:
             self.model = self.loadModel(modelPath)
 

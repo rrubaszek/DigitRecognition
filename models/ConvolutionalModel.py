@@ -38,7 +38,7 @@ class ConvolutionalModel:
         self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics =['accuracy']) 
 
         print("Model constructed")
-
+    
     def loadData(self):
         # NumPy arrays
         (trainImages, trainLabels), (testImages, testLabels) = tf.keras.datasets.mnist.load_data()
@@ -66,7 +66,7 @@ class ConvolutionalModel:
 
         return testLoss, testAccuracy, predictions, predictedClasses
 
-    def saveModel(self, filepath="keras_models\digit_recognition_conv.keras"):
+    def saveModel(self, filepath):
         self.model.save(filepath)
         print("Model saved")
 
@@ -75,8 +75,8 @@ class ConvolutionalModel:
         predicted_digits = np.argmax(predictions, axis=1)
         return predicted_digits
 
-cnn_model = ConvolutionalModel()
-(train_images, train_labels), (test_images, test_labels) = cnn_model.loadData()
-history = cnn_model.train(train_images, train_labels)
-loss, accuracy, predictions, predicted_classes = cnn_model.evaluate(test_images, test_labels)
-cnn_model.saveModel()
+model = ConvolutionalModel()
+(train_images, train_labels), (test_images, test_labels) = model.loadData()
+history = model.train(train_images, train_labels)
+loss, accuracy, predictions, predicted_classes = model.evaluate(test_images, test_labels)
+model.saveModel("conv_model.keras")
