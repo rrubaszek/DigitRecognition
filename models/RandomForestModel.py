@@ -50,3 +50,5 @@ model = RandomForestModel()
 history = model.train(train_images, train_labels)
 predicted_classes = model.evaluate(test_images, test_labels)
 model.saveModel("rf_model.joblib")
+
+
