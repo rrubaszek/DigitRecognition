@@ -1,3 +1,7 @@
 models/__pycache__
 
+keras_models/
+
 venv/
+
+user_input.png

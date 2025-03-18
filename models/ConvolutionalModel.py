@@ -67,7 +67,7 @@ class ConvolutionalModel:
         return testLoss, testAccuracy, predictions, predictedClasses
 
     def saveModel(self, filepath):
-        self.model.save(filepath)
+        self.model.save("keras_models/" + filepath)
         print("Model saved")
 
     def predict(self, image):

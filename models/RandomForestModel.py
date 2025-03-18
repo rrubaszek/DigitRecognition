@@ -42,7 +42,7 @@ class RandomForestModel:
         return predictions
     
     def saveModel(self, filepath):
-        joblib.dump(self.model, filepath)
+        joblib.dump(self.model, "keras_models/" + filepath)
         print("Model saved")
 
 model = RandomForestModel()

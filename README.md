@@ -23,7 +23,7 @@ Users can load models with the `.keras` and `.joblib` extension, draw numbers, a
 
 ```
 📁 DigitRecognition/
-│── 📁 keras_models/            # Pre-trained models (.keras)
+│── 📁 keras_models/            # Folder for generated models (.keras, .joblib)
 │── 📁 models/                  # Source code for models 
 │   │── ConvulsionalModel.py     # CNN model training & loading
 │   │── RandomForestModel.py     # Random Forest training & loading
@@ -59,13 +59,23 @@ pip install -r requirements.txt
 
 ## How to Use
 
+### **0. If used the first time, generate preferred model**
+```bash
+python models/ConvolutionalModel.py
+```
+or
+```bash
+python models/RandomForestModel.py
+```
+- Models are generated to the keras_models/ folder
+
 ### **1. Run the Application**
 ```bash
 python src/Application.py
 ```
 
 ### **2. Load a Model**
-- Click **"Load Model"** and select a `.keras` file from the `keras_models/` folder.
+- Click **"Load Model"** and select a `.keras` or `.joblib` file from the `keras_models/` folder.
 
 ### **3. Draw a Digit**
 - Use your mouse to **draw a number** on the canvas.
