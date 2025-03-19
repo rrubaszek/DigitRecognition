@@ -4,4 +4,6 @@ keras_models/
 
 venv/
 
+tests/
+
 user_input.png

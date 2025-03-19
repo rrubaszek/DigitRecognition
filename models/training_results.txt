@@ -1,4 +1,4 @@
-Convulsional model:
+Convolutional model:
            no  precision    recall  f1-score   support
 
             0       0.98      0.99      0.99       980
