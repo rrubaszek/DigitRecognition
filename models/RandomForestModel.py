@@ -6,8 +6,9 @@ from sklearn.metrics import classification_report, confusion_matrix
 class RandomForestModel:
     def __init__(self):
         self.model = RandomForestClassifier(
-            n_estimators=100,  # Number of trees in the forest
+            n_estimators=500,  # Number of trees in the forest
             max_depth=None,    # Maximum depth of the trees
+            max_features='sqrt',
             min_samples_split=2,
             min_samples_leaf=1,
             random_state=42,   # For reproducibility
